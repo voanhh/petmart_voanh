@@ -12,12 +12,6 @@ public class ProductDTO {
     private int quantity;
     private LocalDateTime time;
 
-    public ProductDTO(Product product) {
-        this.id = product.getProductId();
-        this.name = product.getProductName();
-        this.price = product.getPrice();
-        this.quantity = product.getQuantity();
-    }
 
     public int getId() {
         return id;

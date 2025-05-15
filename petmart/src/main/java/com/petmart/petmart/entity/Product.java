@@ -3,6 +3,7 @@ package com.petmart.petmart.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity(name="product")
@@ -27,11 +28,12 @@ public class Product {
     private int quantity;
 
     @Column(name="release_date")
-    private Date release_date;
+    private LocalDateTime release_date;
 
     @OneToOne(mappedBy = "product")
     @PrimaryKeyJoinColumn
     private ProductDetail productDetail;
+
 
     public int getProductId() {
         return productId;
@@ -73,11 +75,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Date getRelease_date() {
+    public LocalDateTime getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(Date release_date) {
+    public void setRelease_date(LocalDateTime release_date) {
         this.release_date = release_date;
     }
 

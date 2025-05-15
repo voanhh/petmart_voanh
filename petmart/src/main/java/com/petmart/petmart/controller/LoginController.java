@@ -27,7 +27,6 @@ public class LoginController {
             responData.setData(false);
             responData.setDesc("Failed! Try Again!");
         }
-
         return new ResponseEntity<>(responData, HttpStatus.OK);
     }
 
