@@ -1,5 +1,6 @@
 package com.petmart.petmart.controller;
 
+import com.petmart.petmart.entity.Users;
 import com.petmart.petmart.payload.ResponData;
 import com.petmart.petmart.payload.request.SignUpRequest;
 import com.petmart.petmart.services.LoginService;
@@ -18,16 +19,22 @@ public class LoginController {
     LoginServicesImp loginServicesImp;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> signin(@RequestParam String username, @RequestParam String password){
-        ResponData responData = new ResponData();
-        if(loginServicesImp.checkLogin(username, password)){
-            responData.setData(true);
-            responData.setDesc("Login Successful!");
-        }else{
-            responData.setData(false);
-            responData.setDesc("Failed! Try Again!");
+    public ResponseEntity<ResponData> signin(
+            @RequestParam String username,
+            @RequestParam String password) {
+
+        ResponData resp = new ResponData();
+        Integer userId = loginServicesImp.authenticate(username, password);
+
+        if (userId != null) {
+            resp.setData(true);
+            resp.setUserId(userId);             // mới ăn thêm userId
+            resp.setDesc("Login Successful!");
+        } else {
+            resp.setData(false);
+            resp.setDesc("Failed! Try Again!");
         }
-        return new ResponseEntity<>(responData, HttpStatus.OK);
+        return ResponseEntity.ok(resp);
     }
 
     @PostMapping("/signup")

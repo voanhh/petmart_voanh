@@ -45,6 +45,15 @@ import java.util.List;
     }
 
     @Override
+    public Integer authenticate(String username, String password) {
+        return userReposistory.findByUsernameAndPassword(username, password)
+                .stream()
+                .findFirst()
+                .map(Users::getId)
+                .orElse(null);
+    }
+
+    @Override
     public boolean addUser(SignUpRequest signUpRequest) {
 
         Roles roles = new Roles();

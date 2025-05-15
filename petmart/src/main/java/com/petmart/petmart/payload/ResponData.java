@@ -5,6 +5,15 @@ public class ResponData {
     private int status = 200;
     private String desc;
     private Object data;
+    private Integer userId;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public int getStatus() {
         return status;
