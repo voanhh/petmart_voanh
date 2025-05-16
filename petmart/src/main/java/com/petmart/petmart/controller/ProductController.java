@@ -18,9 +18,36 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductServices productServices;
+
+    //Tao 1 san pham
+    @PostMapping
+    Product createProduct(@RequestBody ProductCreationRequest request){
+        return productServices.createProduct(request);
+    }
+
+    //Lay 1 product
+    @GetMapping("/{productId}")
+    ProductDTO getProduct(@PathVariable("productId") Integer productId){
+        return productServices.getProduct(productId);
+    }
+
+    //Lay tat ca san pham
     @GetMapping
     public List<ProductDTO> getAllProducts() {
         return productServices.getAllProduct();
     }
-}
 
+    //Update product
+    @PutMapping("/{productId}")
+    ProductDTO updateProduct(@PathVariable Integer productId, @RequestBody ProductUpdateRequest request){
+        return productServices.updateProduct(productId, request);
+    }
+
+    //Delete user
+    @DeleteMapping("/{productId}")
+    String deleteUser(@PathVariable Integer productId){
+        productServices.deleteProduct(productId);
+        return "Product has been deleted";
+    }
+
+}
